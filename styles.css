@@ -4,11 +4,14 @@
  * ========================================================================== */
 
 :root {
-  --sw: #2a9d8f;   /* Storyworlds  */
+  /* District fills — chosen so WHITE label text meets WCAG 2.1 AA (>= 4.5:1):
+     Storyworlds 5.47:1 · Audio 5.31:1 · Video 5.35:1 · Chicago 6.51:1 */
+  --sw: #0f766e;   /* Storyworlds  */
   --au: #6a5acd;   /* Audio        */
-  --vi: #e76f51;   /* Video        */
+  --vi: #b8452b;   /* Video        */
   --ch: #3f5aa6;   /* Chicago 2125 */
   --ink: #163b36;
+  --focus: #10314a; /* high-contrast focus ring */
   --panel-bg: #ffffff;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -40,9 +43,12 @@ html, body {
   user-select: none;
 }
 
-.banner    { font: 700 22px/1 var(--font); fill: var(--ink); }
-.subbanner { font: 500 15px/1 var(--font); fill: #4c6b64; }
-.water-label { font: 600 18px var(--font); fill: #ffffff; opacity: 0.75; letter-spacing: 2px; }
+/* Title card — solid white box drawn last (top of z-order) so road/route lines
+   never cross the title, and its text sits at maximum contrast on white. */
+.title-box { fill: #ffffff; stroke: #cfe0d8; stroke-width: 1.5; }
+.banner    { font: 800 22px/1 var(--font); fill: var(--ink); }        /* 11:1 on white */
+.subbanner { font: 600 15px/1 var(--font); fill: #3f5f58; }           /* 6.6:1 on white */
+.water-label { font: 700 18px var(--font); fill: #12495e; letter-spacing: 2px; }
 
 /* Roads & river */
 .roads line       { stroke: #cdd8d0; stroke-width: 4; }
@@ -69,13 +75,19 @@ html, body {
 .zone.ch { fill: url(#skyGrad); }
 
 .d-title { font: 700 24px var(--font); fill: #ffffff; text-anchor: middle; pointer-events: none; }
-.d-weeks { font: 600 15px var(--font); fill: #ffffff; text-anchor: middle; opacity: .92; pointer-events: none; }
+.d-weeks { font: 600 15px var(--font); fill: #ffffff; text-anchor: middle; pointer-events: none; }
 .icon    { pointer-events: none; }
 
 /* Hover / focus feedback */
 .district:hover .zone,
-.district:focus-visible .zone { transform: scale(1.04); filter: brightness(1.07) drop-shadow(0 8px 12px rgba(11,46,42,.28)); }
+.district:focus .zone,
+.district:focus-visible .zone { transform: scale(1.04); filter: brightness(1.06) drop-shadow(0 8px 12px rgba(11,46,42,.28)); }
 
+/* Focus indicator: dual ring (dark outline + white inner stroke) so it stays
+   visible on any district color or the lake — WCAG 2.4.7 / 1.4.11 (>= 3:1). */
+.district:focus,
+.district:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.district:focus .zone,
 .district:focus-visible .zone { stroke: #ffffff; stroke-width: 3; }
 
 /* ---------- Week panel ---------- */
@@ -87,33 +99,71 @@ html, body {
 }
 
 .week-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(360px, 88%);
-  max-height: 100%;
+  /* Fixed + top/bottom:0 makes the height resolve against the iframe viewport,
+     so the panel is capped to the visible area and scrolls when content is
+     taller than the frame — critical on short mobile screens. */
+  position: fixed;
+  top: 0; bottom: 0; right: 0;
+  width: min(360px, 92%);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;   /* momentum scroll on iOS */
+  overscroll-behavior: contain;
   background: var(--panel-bg);
   box-shadow: -8px 0 28px rgba(11, 46, 42, .25);
   border-radius: 16px 0 0 16px;
-  padding: 22px 22px 28px;
+  padding: 0 22px 24px;
   z-index: 11;
   animation: slideIn .18s ease-out;
+  scrollbar-width: thin;
+  scrollbar-color: #b0c1ba transparent;
+}
+.week-panel::-webkit-scrollbar { width: 12px; }
+.week-panel::-webkit-scrollbar-thumb {
+  background: #b0c1ba; border-radius: 8px; border: 3px solid var(--panel-bg);
 }
 
 @keyframes slideIn { from { transform: translateX(18px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
+/* Header stays pinned so the title and Close button remain reachable while
+   the week list scrolls beneath it. */
+.panel-header {
+  position: sticky;
+  top: 0;
+  background: var(--panel-bg);
+  padding: 20px 0 10px;
+  margin-bottom: 4px;
+  z-index: 2;
+}
+
 .panel-close {
   position: absolute;
-  top: 10px; right: 12px;
+  top: 12px; right: 0;
   border: none; background: none;
   font-size: 30px; line-height: 1;
-  color: #6b7d78; cursor: pointer;
+  color: #4d5a56; cursor: pointer;
+  border-radius: 6px; padding: 2px 8px;
 }
 .panel-close:hover { color: var(--ink); }
+.panel-close:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
-.panel-title { margin: 4px 0 2px; font-size: 22px; }
-.panel-range { margin: 0 0 16px; color: #6b7d78; font-weight: 600; font-size: 14px; }
+.panel-title { margin: 4px 40px 2px 0; font-size: 22px; }
+.panel-range { margin: 0; color: #4d5a56; font-weight: 600; font-size: 14px; }
+
+/* "scroll for more" affordance — shown by JS only while the list can scroll
+   down and the user isn't already at the bottom. */
+.scroll-hint {
+  position: sticky;
+  bottom: 0;
+  display: none;
+  text-align: center;
+  font-size: 12px; font-weight: 700;
+  color: #3f5f58;
+  padding: 14px 0 4px;
+  margin-top: -8px;
+  background: linear-gradient(to top, var(--panel-bg) 55%, rgba(255,255,255,0));
+  pointer-events: none;
+}
+.week-panel.is-scrollable .scroll-hint { display: block; }
 
 .panel-weeks { list-style: none; margin: 0; padding: 0; }
 .panel-weeks li { margin: 0 0 10px; }
@@ -130,27 +180,31 @@ html, body {
   padding: 12px 14px;
   transition: background .12s ease, border-color .12s ease, transform .12s ease;
 }
-.panel-weeks a:hover,
-.panel-weeks a:focus-visible {
+.panel-weeks a:hover {
   background: #e6f1ec;
-  border-color: var(--accent, #2a9d8f);
+  border-color: var(--accent, #0f766e);
   transform: translateX(2px);
-  outline: none;
+}
+.panel-weeks a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  background: #e6f1ec;
 }
 .panel-weeks .wk-num {
   flex: 0 0 auto;
   font-weight: 700;
   font-size: 13px;
   color: #fff;
-  background: var(--accent, #2a9d8f);
+  background: var(--accent, #0f766e);   /* white text on accent >= 4.5:1 */
   border-radius: 6px;
   padding: 2px 8px;
 }
 .panel-weeks .wk-title { font-size: 14.5px; line-height: 1.3; }
 
-/* Disabled placeholder links (URL not yet filled in) */
+/* Disabled placeholder items (URL not yet filled in) — rendered as non-focusable
+   text (no href), exempt from contrast as an inactive component, but kept legible. */
 .panel-weeks a[aria-disabled="true"] {
-  opacity: .55;
+  opacity: .7;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -183,4 +237,16 @@ html, body {
 @media (max-width: 520px) {
   .banner { font-size: 20px; }
   .subbanner { font-size: 12px; }
+  /* Full-width sheet on phones so long module lists get maximum room. */
+  .week-panel { width: 100%; border-radius: 0; }
+}
+
+/* Respect users who prefer reduced motion (WCAG 2.3.3 / good practice) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .zone { transition: none; }
 }

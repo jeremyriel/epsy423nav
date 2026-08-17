@@ -64,13 +64,21 @@ URL — same result.
 3. Paste this, replacing the `src` with **your** Pages URL from step 2:
 
    ```html
-   <iframe src="https://YOUR-USERNAME.github.io/chicago-storyworlds-map/"
-           width="100%" height="720"
-           style="border:0; max-width:1000px; display:block; margin:0 auto;"
-           title="Course Navigation Map" allowfullscreen></iframe>
+   <div style="position:relative; width:100%; max-width:1000px; margin:0 auto; padding-top:72%;">
+     <iframe src="https://YOUR-USERNAME.github.io/chicago-storyworlds-map/"
+             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+             title="Course Navigation Map" allowfullscreen></iframe>
+   </div>
    ```
 
 4. **Save** the page.
+
+> **Why the wrapper?** The map now contains only the interactive artwork (the text module
+> list beneath it was removed). The map has a fixed shape (1000 × 720), so the wrapper's
+> `padding-top:72%` (720 ÷ 1000) makes the frame scale to that exact shape at any column
+> width — no blank space below and no inner scrollbar. If your theme prefers a plain
+> fixed-height frame instead, this also works:
+> `<iframe src="…" width="100%" height="720" style="border:0; max-width:1000px; display:block; margin:0 auto;" title="Course Navigation Map"></iframe>`
 
 ### If the map area shows up blank in Canvas
 Some schools restrict which sites can be embedded. If you see an empty box, email your
@@ -115,5 +123,6 @@ embedding. Keep `banner.svg` as your source of truth for edits.
 
 - Districts are keyboard-focusable (Tab) and open with Enter/Space; Esc closes the panel.
 - The SVG has descriptive `title`/`desc`, and every district has an ARIA label.
-- A plain-text list of every module is rendered beneath the map as a fallback for screen
-  readers and for the rare case the map fails to load.
+- A plain-text list of every module is included for screen readers but **hidden from view**
+  (screen-reader-only), so it no longer shows beneath the map while remaining accessible to
+  assistive technology.

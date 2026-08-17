@@ -16,7 +16,7 @@
   <rect x="0" y="0" width="1000" height="720" fill="#eef4ee"/>
 
   <path d="M 1000 0 L 1000 720 L 690 720 C 700 600 640 520 700 430 C 760 340 700 240 760 150 C 800 90 780 40 830 0 Z" fill="url(#lakeGrad)"/>
-  <text x="905" y="120" transform="rotate(-8 905 120)" font-size="18" font-weight="600" fill="#ffffff" opacity="0.75" letter-spacing="2" text-anchor="middle">LAKE&#160;MICHIGAN</text>
+  <text x="905" y="120" transform="rotate(-8 905 120)" font-size="18" font-weight="700" fill="#12495e" letter-spacing="2" text-anchor="middle">LAKE&#160;MICHIGAN</text>
 
   <path d="M 705 470 L 470 470 L 360 380 M 470 470 L 380 560" stroke="#7fb2c9" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
@@ -32,14 +32,14 @@
 
   <!-- Storyworlds -->
   <g>
-    <rect x="120" y="95" width="230" height="170" rx="22" fill="#2a9d8f" filter="url(#soft)"/>
+    <rect x="120" y="95" width="230" height="170" rx="22" fill="#0f766e" filter="url(#soft)"/>
     <g transform="translate(150 128)">
       <path d="M0 8 C10 2 24 2 32 8 L32 34 C24 28 10 28 0 34 Z" fill="#ffffff" opacity="0.95"/>
       <path d="M32 8 C40 2 54 2 64 8 L64 34 C54 28 40 28 32 34 Z" fill="#ffffff" opacity="0.8"/>
       <line x1="32" y1="8" x2="32" y2="34" stroke="#1c6a5f" stroke-width="2"/>
     </g>
     <text x="235" y="210" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">Storyworlds</text>
-    <text x="235" y="238" font-size="15" font-weight="600" fill="#fff" opacity="0.92" text-anchor="middle">Weeks 1–4</text>
+    <text x="235" y="238" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">Weeks 1–4</text>
   </g>
 
   <!-- Audio -->
@@ -52,18 +52,18 @@
       <line x1="14" y1="52" x2="34" y2="52" stroke="#fff" stroke-width="4"/>
     </g>
     <text x="245" y="475" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">Audio</text>
-    <text x="245" y="503" font-size="15" font-weight="600" fill="#fff" opacity="0.92" text-anchor="middle">Weeks 5–8</text>
+    <text x="245" y="503" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">Weeks 5–8</text>
   </g>
 
   <!-- Video -->
   <g>
-    <rect x="415" y="455" width="230" height="170" rx="22" fill="#e76f51" filter="url(#soft)"/>
+    <rect x="415" y="455" width="230" height="170" rx="22" fill="#b8452b" filter="url(#soft)"/>
     <g transform="translate(450 487)">
       <rect x="0" y="0" width="52" height="38" rx="8" fill="#fff"/>
-      <path d="M20 9 L38 19 L20 29 Z" fill="#e76f51"/>
+      <path d="M20 9 L38 19 L20 29 Z" fill="#b8452b"/>
     </g>
     <text x="530" y="570" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">Video</text>
-    <text x="530" y="598" font-size="15" font-weight="600" fill="#fff" opacity="0.92" text-anchor="middle">Weeks 9–11</text>
+    <text x="530" y="598" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">Weeks 9–11</text>
   </g>
 
   <!-- Chicago 2125 -->
@@ -78,9 +78,11 @@
       <circle cx="60" cy="-11" r="3" fill="#ffd166"/>
     </g>
     <text x="765" y="352" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">Chicago 2125</text>
-    <text x="765" y="380" font-size="15" font-weight="600" fill="#fff" opacity="0.92" text-anchor="middle">Weeks 12–15</text>
+    <text x="765" y="380" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">Weeks 12–15</text>
   </g>
 
-  <text x="30" y="36" font-size="22" font-weight="700" fill="#163b36">EPSY/CI 423 · Digital Environmental Storytelling &amp; Advocacy</text>
-  <text x="30" y="60" font-size="15" font-weight="500" fill="#4c6b64">Click a district to explore its weekly modules</text>
+  <!-- Title card (top-most layer; solid box keeps road lines off the title) -->
+  <rect x="20" y="6" width="702" height="74" rx="14" fill="#ffffff" stroke="#cfe0d8" stroke-width="1.5" filter="url(#soft)"/>
+  <text x="42" y="40" font-size="22" font-weight="800" fill="#163b36">EPSY/CI 423 · Digital Environmental Storytelling &amp; Advocacy</text>
+  <text x="42" y="63" font-size="15" font-weight="600" fill="#3f5f58">Click a district to explore its weekly modules</text>
 </svg>
