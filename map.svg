@@ -93,4 +93,7 @@
   <rect x="20" y="6" width="702" height="74" rx="14" fill="#ffffff" stroke="#cfe0d8" stroke-width="1.5" filter="url(#soft)"/>
   <text x="42" y="40" font-size="22" font-weight="800" fill="#163b36">EPSY/CI 423 · Digital Environmental Storytelling &amp; Advocacy</text>
   <text x="42" y="63" font-size="15" font-weight="600" fill="#3f5f58">Click a district to explore its weekly modules</text>
+
+  <!-- Visible frame around the entire map -->
+  <rect x="2" y="2" width="996" height="716" rx="14" fill="none" stroke="#173f38" stroke-width="4"/>
 </svg>

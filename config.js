@@ -25,10 +25,10 @@ window.COURSE_NAV_CONFIG = {
       title: "Storyworlds",
       weekRange: "Weeks 1–4",
       weeks: [
-        { n: 1, title: "Welcome to Chicago's Environmental Storyworlds",            url: "PASTE_CANVAS_URL" },
-        { n: 2, title: "Storyworld 1 — Climate Resilience",                         url: "PASTE_CANVAS_URL" },
-        { n: 3, title: "Storyworld 2 — Lake Michigan, Water & the Great Lakes",     url: "PASTE_CANVAS_URL" },
-        { n: 4, title: "Storyworld 3 — Environmental Justice",                      url: "PASTE_CANVAS_URL" },
+        { n: 1, title: "Welcome to Chicago's Environmental Storyworlds",            url: "https://canvas.uic.edu/courses/56270/modules/227370" },
+        { n: 2, title: "Storyworld 1 — Climate Resilience",                         url: "https://canvas.uic.edu/courses/56270/modules/227372" },
+        { n: 3, title: "Storyworld 2 — Lake Michigan, Water & the Great Lakes",     url: "https://canvas.uic.edu/courses/56270/modules/227373" },
+        { n: 4, title: "Storyworld 3 — Environmental Justice",                      url: "https://canvas.uic.edu/courses/56270/modules/227376" },
       ],
     },
     {
@@ -36,10 +36,10 @@ window.COURSE_NAV_CONFIG = {
       title: "Audio",
       weekRange: "Weeks 5–8",
       weeks: [
-        { n: 5, title: "How Environmental Stories Work",       url: "PASTE_CANVAS_URL" },
-        { n: 6, title: "Finding & Reporting a Community Story", url: "PASTE_CANVAS_URL" },
-        { n: 7, title: "Environmental Audio Storytelling",      url: "PASTE_CANVAS_URL" },
-        { n: 8, title: "Audio, Audience, and Advocacy",         url: "PASTE_CANVAS_URL" },
+        { n: 5, title: "How Environmental Stories Work",       url: "https://canvas.uic.edu/courses/56270/modules/227378" },
+        { n: 6, title: "Finding & Reporting a Community Story", url: "https://canvas.uic.edu/courses/56270/modules/227379" },
+        { n: 7, title: "Environmental Audio Storytelling",      url: "https://canvas.uic.edu/courses/56270/modules/227380" },
+        { n: 8, title: "Audio, Audience, and Advocacy",         url: "https://canvas.uic.edu/courses/56270/modules/227398" },
       ],
     },
     {
@@ -47,9 +47,9 @@ window.COURSE_NAV_CONFIG = {
       title: "Video",
       weekRange: "Weeks 9–11",
       weeks: [
-        { n: 9,  title: "Personal Stories of Place: Environmental Video",   url: "PASTE_CANVAS_URL" },
-        { n: 10, title: "Making an Environmental Video",                    url: "PASTE_CANVAS_URL" },
-        { n: 11, title: "Visual Storytelling & Looking Toward the Future",  url: "PASTE_CANVAS_URL" },
+        { n: 9,  title: "Personal Stories of Place: Environmental Video",   url: "https://canvas.uic.edu/courses/56270/modules/227415" },
+        { n: 10, title: "Making an Environmental Video",                    url: "https://canvas.uic.edu/courses/56270/modules/227416" },
+        { n: 11, title: "Visual Storytelling & Looking Toward the Future",  url: "https://canvas.uic.edu/courses/56270/modules/227434" },
       ],
     },
     {
@@ -57,10 +57,10 @@ window.COURSE_NAV_CONFIG = {
       title: "Chicago 2125",
       weekRange: "Weeks 12–15",
       weeks: [
-        { n: 12, title: "Chicago 2125: Environmental Futures", url: "PASTE_CANVAS_URL" },
-        { n: 13, title: "Building the Future World",           url: "PASTE_CANVAS_URL" },
-        { n: 14, title: "Future Stories as Advocacy",          url: "PASTE_CANVAS_URL" },
-        { n: 15, title: "Chicago 2125: Stories for the Future", url: "PASTE_CANVAS_URL" },
+        { n: 12, title: "Chicago 2125: Environmental Futures", url: "https://canvas.uic.edu/courses/56270/modules/227436" },
+        { n: 13, title: "Building the Future World",           url: "https://canvas.uic.edu/courses/56270/modules/227437" },
+        { n: 14, title: "Future Stories as Advocacy",          url: "https://canvas.uic.edu/courses/56270/modules/227438" },
+        { n: 15, title: "Chicago 2125: Stories for the Future", url: "https://canvas.uic.edu/courses/56270/modules/227439" },
       ],
     },
   ],
