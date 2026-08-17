@@ -68,11 +68,23 @@ html, body {
 /* ---------- Districts ---------- */
 .district { cursor: pointer; outline: none; }
 
-.zone { transition: transform .15s ease, filter .15s ease; transform-box: fill-box; transform-origin: center; }
+.zone {
+  transition: transform .15s ease, filter .15s ease;
+  transform-box: fill-box; transform-origin: center;
+  /* Slow pulse on load: smoothly expand, then contract back to original size,
+     four times. No fill-mode, so hover/focus scaling takes over afterward. */
+  animation: pulse 2s ease-in-out 4;
+}
 .zone.sw { fill: var(--sw); }
 .zone.au { fill: var(--au); }
 .zone.vi { fill: var(--vi); }
 .zone.ch { fill: url(#skyGrad); }
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }   /* expand */
+  100% { transform: scale(1); }      /* contract back to original */
+}
 
 .d-title { font: 700 24px var(--font); fill: #ffffff; text-anchor: middle; pointer-events: none; }
 .d-weeks { font: 600 15px var(--font); fill: #ffffff; text-anchor: middle; pointer-events: none; }
@@ -89,6 +101,11 @@ html, body {
 .district:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .district:focus .zone,
 .district:focus-visible .zone { stroke: #ffffff; stroke-width: 3; }
+
+/* ---------- Bottom instruction + arrow ---------- */
+.hint-box   { fill: #ffffff; stroke: #cfe0d8; stroke-width: 1.5; }
+.hint-text  { font: 700 17px var(--font); fill: var(--ink); text-anchor: middle; }
+.hint-arrow { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; }
 
 /* ---------- Week panel ---------- */
 .panel-backdrop {

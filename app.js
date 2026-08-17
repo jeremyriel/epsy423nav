@@ -115,32 +115,38 @@
   closeBtn.addEventListener("click", closePanel);
   backdrop.addEventListener("click", closePanel);
 
-  /* ---------- size the title box to fit its text exactly ----------
+  /* ---------- size a card box to fit its text exactly ----------
      Font metrics vary by OS/browser (incl. inside Canvas), so measure the
-     rendered title + subtitle and grow the white card to wrap them + padding.
-     The static rect in the SVG is a safe (generous) fallback if this can't run. */
-  function fitTitleBox() {
-    var box = document.querySelector(".title-box");
-    var title = document.querySelector(".banner");
-    var sub = document.querySelector(".subbanner");
-    if (!box || !title || typeof title.getBBox !== "function") return;
+     rendered text and grow the white card to wrap it + padding. The static
+     rect in the SVG is a safe (generous) fallback if this can't run. */
+  function fitBox(boxSel, textSels, padX, padTop, padBottom) {
+    var box = document.querySelector(boxSel);
+    if (!box || typeof box.getBBox !== "function") return;
     try {
-      var padX = 22, padTop = 14, padBottom = 12;
-      var a = title.getBBox();
-      var b = sub ? sub.getBBox() : a;
-      var minX = Math.min(a.x, b.x), minY = Math.min(a.y, b.y);
-      var maxX = Math.max(a.x + a.width, b.x + b.width);
-      var maxY = Math.max(a.y + a.height, b.y + b.height);
+      var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity, found = false;
+      textSels.forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        var r = el.getBBox();
+        found = true;
+        minX = Math.min(minX, r.x); minY = Math.min(minY, r.y);
+        maxX = Math.max(maxX, r.x + r.width); maxY = Math.max(maxY, r.y + r.height);
+      });
+      if (!found) return;
       box.setAttribute("x", (minX - padX).toFixed(1));
       box.setAttribute("y", (minY - padTop).toFixed(1));
       box.setAttribute("width", (maxX - minX + padX * 2).toFixed(1));
       box.setAttribute("height", (maxY - minY + padTop + padBottom).toFixed(1));
     } catch (e) { /* keep the static fallback box */ }
   }
-  fitTitleBox();
+  function fitBoxes() {
+    fitBox(".title-box", [".banner", ".subbanner"], 22, 14, 12);
+    fitBox(".hint-box", [".hint-text"], 22, 11, 11);
+  }
+  fitBoxes();
   // Re-fit once web fonts have settled (metrics can shift after font load).
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitleBox);
-  window.addEventListener("load", fitTitleBox);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBoxes);
+  window.addEventListener("load", fitBoxes);
 
   /* ---------- accessible text fallback (always rendered) ---------- */
   var nav = document.getElementById("fallback-nav");
